@@ -472,8 +472,10 @@ body {
 
 .perf-status.online { color: var(--green); }
 .perf-status.online .dot { background: var(--green); animation: pulse-dot 2s infinite; }
-.perf-status.offline { color: var(--text-muted); }
-.perf-status.offline .dot { background: var(--text-muted); }
+.perf-status.offline { color: var(--red); }
+.perf-status.offline .dot { background: var(--red); }
+.perf-status.checking { color: var(--yellow); }
+.perf-status.checking .dot { background: var(--yellow); animation: pulse-dot 1s infinite; }
 
 .perf-metrics {
   display: grid;
@@ -940,6 +942,36 @@ body.sidebar-open { overflow: hidden; }
     padding: 0.4rem 0.65rem;
     font-size: 0.72rem;
   }
+}
+
+/* ═══════════════ HEALTH CHECK STATUS ═══════════════ */
+.app-status.offline { color: var(--red); }
+.app-status.offline .dot { background: var(--red); animation: none; }
+.app-status.checking { color: var(--yellow); }
+.app-status.checking .dot { background: var(--yellow); animation: pulse-dot 1s infinite; }
+
+/* Skeleton loading shimmer */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--border) !important;
+  color: transparent !important;
+  border-radius: 4px;
+  min-width: 3ch;
+  min-height: 1.2em;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 /* ═══════════════ ANIMATIONS ═══════════════ */

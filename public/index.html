@@ -199,7 +199,7 @@
     <!-- Apps Grid -->
     <div class="section-label animate-in delay-1">Aplicações conectadas</div>
     <div class="apps-grid" id="appsGrid">
-      <a href="/seo" class="app-card animate-in delay-2" data-name="seo audit auditoria">
+      <a href="/seo" class="app-card animate-in delay-2" data-name="seo audit auditoria" data-app="seo">
         <div class="app-card-icon seo">
           <i data-lucide="search-check"></i>
         </div>
@@ -208,12 +208,12 @@
           <p>Auditoria completa de SEO com inteligência artificial. Análise técnica, on-page e off-page.</p>
         </div>
         <div class="app-card-footer">
-          <div class="app-status"><span class="dot"></span> Online</div>
+          <div class="app-status checking"><span class="dot"></span> Verificando&hellip;</div>
           <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="/erp" class="app-card animate-in delay-3" data-name="erp gestão empresarial">
+      <a href="/erp" class="app-card animate-in delay-3" data-name="erp gestão empresarial" data-app="erp">
         <div class="app-card-icon erp">
           <i data-lucide="boxes"></i>
         </div>
@@ -222,12 +222,12 @@
           <p>Plataforma de gestão empresarial. Controle financeiro, operações e processos integrados.</p>
         </div>
         <div class="app-card-footer">
-          <div class="app-status"><span class="dot"></span> Online</div>
+          <div class="app-status checking"><span class="dot"></span> Verificando&hellip;</div>
           <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="/jarvis/meu-dia" class="app-card animate-in delay-4" data-name="jarvis gestão pessoal">
+      <a href="/jarvis/meu-dia" class="app-card animate-in delay-4" data-name="jarvis gestão pessoal" data-app="jarvis">
         <div class="app-card-icon jarvis">
           <i data-lucide="bot"></i>
         </div>
@@ -236,12 +236,12 @@
           <p>Plataforma de gestão pessoal. Produtividade, organização e assistência via IA.</p>
         </div>
         <div class="app-card-footer">
-          <div class="app-status"><span class="dot"></span> Online</div>
+          <div class="app-status checking"><span class="dot"></span> Verificando&hellip;</div>
           <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="/meivende" class="app-card animate-in delay-5" data-name="meivende marketing ia operação">
+      <a href="/meivende" class="app-card animate-in delay-5" data-name="meivende marketing ia operação" data-app="meivende">
         <div class="app-card-icon meivende">
           <i data-lucide="trending-up"></i>
         </div>
@@ -250,12 +250,12 @@
           <p>Plataforma de operação de marketing com IA. Campanhas, criativos e otimização automatizados.</p>
         </div>
         <div class="app-card-footer">
-          <div class="app-status"><span class="dot"></span> Online</div>
+          <div class="app-status checking"><span class="dot"></span> Verificando&hellip;</div>
           <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="/atlas" class="app-card animate-in delay-6" data-name="atlas gestor projetos guessless">
+      <a href="/atlas" class="app-card animate-in delay-6" data-name="atlas gestor projetos guessless" data-app="atlas">
         <div class="app-card-icon atlas">
           <i data-lucide="globe"></i>
         </div>
@@ -264,12 +264,12 @@
           <p>Gestor de projetos da GuessLess. Kanban, roadmaps e alocação inteligente de recursos.</p>
         </div>
         <div class="app-card-footer">
-          <div class="app-status"><span class="dot"></span> Online</div>
+          <div class="app-status checking"><span class="dot"></span> Verificando&hellip;</div>
           <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="/dash" class="app-card animate-in delay-7" data-name="dash dashboards clientes">
+      <a href="/dash" class="app-card animate-in delay-7" data-name="dash dashboards clientes" data-app="dash">
         <div class="app-card-icon dash">
           <i data-lucide="gauge"></i>
         </div>
@@ -278,7 +278,7 @@
           <p>Plataforma de dashboards para clientes. Métricas de performance, tráfego e ROI em tempo real.</p>
         </div>
         <div class="app-card-footer">
-          <div class="app-status"><span class="dot"></span> Online</div>
+          <div class="app-status checking"><span class="dot"></span> Verificando&hellip;</div>
           <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
         </div>
       </a>
@@ -322,52 +322,49 @@
     <div class="stats-bar animate-in delay-8">
       <div class="stat-card">
         <div class="stat-header">
-          <div class="stat-label">Apps Ativas</div>
+          <div class="stat-label">Apps Online</div>
           <i data-lucide="server"></i>
         </div>
-        <div class="stat-value">6</div>
-        <div class="stat-change up">
-          <i data-lucide="trending-up"></i> Todas operacionais
+        <div class="stat-value" data-health-stat="apps-online">&mdash;</div>
+        <div class="stat-change neutral" data-health-change="apps">
+          <i data-lucide="minus"></i> Verificando&hellip;
         </div>
-        <div class="stat-bar"><div class="stat-bar-fill" style="width: 100%"></div></div>
       </div>
       <div class="stat-card">
         <div class="stat-header">
-          <div class="stat-label">Uptime</div>
-          <i data-lucide="shield-check"></i>
-        </div>
-        <div class="stat-value">99.9%</div>
-        <div class="stat-change up">
-          <i data-lucide="trending-up"></i> 0.2% vs mês anterior
-        </div>
-        <div class="stat-bar"><div class="stat-bar-fill" style="width: 99%"></div></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-header">
-          <div class="stat-label">Requisições / dia</div>
-          <i data-lucide="arrow-up-down"></i>
-        </div>
-        <div class="stat-value">12.4k</div>
-        <div class="stat-change up">
-          <i data-lucide="trending-up"></i> 18% esta semana
-        </div>
-        <div class="stat-bar"><div class="stat-bar-fill" style="width: 72%"></div></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-header">
-          <div class="stat-label">Latência média</div>
+          <div class="stat-label">Latência Média</div>
           <i data-lucide="clock"></i>
         </div>
-        <div class="stat-value">42ms</div>
-        <div class="stat-change neutral">
-          <i data-lucide="minus"></i> Estável
+        <div class="stat-value" data-health-stat="avg-latency">&mdash;</div>
+        <div class="stat-change neutral" data-health-change="latency">
+          <i data-lucide="minus"></i> Verificando&hellip;
         </div>
-        <div class="stat-bar"><div class="stat-bar-fill" style="width: 15%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Última Verificação</div>
+          <i data-lucide="refresh-cw"></i>
+        </div>
+        <div class="stat-value" data-health-stat="last-check">&mdash;</div>
+        <div class="stat-change neutral">
+          <i data-lucide="minus"></i> Auto-refresh 45s
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Status</div>
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="stat-value" data-health-stat="status-msg">&mdash;</div>
+        <div class="stat-change neutral">
+          <i data-lucide="minus"></i> Tempo real
+        </div>
       </div>
     </div>
 
   </main>
 
   <script src="/scripts/shared.js"></script>
+  <script src="/scripts/health.js"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 {
+  "redirects": [
+    { "source": "/seo", "destination": "/seo/", "permanent": false }
+  ],
   "rewrites": [
-    { "source": "/seo", "destination": "https://audit-seo-azure.vercel.app/" },
+    { "source": "/seo/", "destination": "https://audit-seo-azure.vercel.app/" },
     { "source": "/seo/:path*", "destination": "https://audit-seo-azure.vercel.app/:path*" },
     { "source": "/erp", "destination": "https://guessless.vercel.app/erp" },
     { "source": "/erp/:path*", "destination": "https://guessless.vercel.app/erp/:path*" },
@@ -8,8 +11,8 @@
     { "source": "/jarvis/:path*", "destination": "https://clarim.vercel.app/jarvis/:path*" },
     { "source": "/meivende", "destination": "https://axiom-guessless.vercel.app/" },
     { "source": "/meivende/:path*", "destination": "https://axiom-guessless.vercel.app/:path*" },
-    { "source": "/atlas", "destination": "https://atlas-na-web.vercel.app/" },
-    { "source": "/atlas/:path*", "destination": "https://atlas-na-web.vercel.app/:path*" },
+    { "source": "/atlas", "destination": "https://atlas-na-web.vercel.app/atlas" },
+    { "source": "/atlas/:path*", "destination": "https://atlas-na-web.vercel.app/atlas/:path*" },
     { "source": "/dash", "destination": "https://trafic-eli.vercel.app/" },
     { "source": "/dash/:path*", "destination": "https://trafic-eli.vercel.app/:path*" }
   ]
