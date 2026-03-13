@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuessLess IA Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container { max-width: 720px; padding: 2rem; text-align: center; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #fff; }
+    p.subtitle { color: #888; margin-bottom: 2.5rem; }
+    .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .app-card {
+      background: #161616;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: #e5e5e5;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .app-card:hover { border-color: #555; background: #1a1a1a; }
+    .app-card h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .app-card p { font-size: 0.85rem; color: #888; }
+    @media (max-width: 500px) { .apps { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GuessLess IA Hub</h1>
+    <p class="subtitle">Aplicações de inteligência artificial</p>
+    <div class="apps">
+      <a href="/seo" class="app-card">
+        <h2>SEO</h2>
+        <p>Auditoria de SEO com IA</p>
+      </a>
+      <a href="/erp" class="app-card">
+        <h2>ERP</h2>
+        <p>Plataforma principal</p>
+      </a>
+      <a href="/jarvis" class="app-card">
+        <h2>Jarvis</h2>
+        <p>Comunicação inteligente</p>
+      </a>
+      <a href="/meivende" class="app-card">
+        <h2>MeiVende</h2>
+        <p>Analytics e dados</p>
+      </a>
+      <a href="/atlas" class="app-card">
+        <h2>Atlas</h2>
+        <p>Mapeamento web</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
