@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios — GuessLess IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/styles/shared.css">
+</head>
+<body>
+
+  <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:20px;height:20px"></i>
+  </button>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main">
+    <div class="main-header animate-in">
+      <div class="main-header-top">
+        <div class="breadcrumb">Relatórios <span>/ Roadmaps</span></div>
+      </div>
+      <h1 class="page-title">Roadmaps das Aplicações</h1>
+      <p class="page-subtitle">Acompanhe a evolução e os próximos passos de cada IA do ecossistema</p>
+    </div>
+
+    <div class="roadmap-grid animate-in delay-2">
+
+      <!-- SEO -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <div class="app-card-icon seo"><i data-lucide="search-check"></i></div>
+          <div>
+            <h3>SEO Audit</h3>
+            <span class="roadmap-subtitle">Auditoria de SEO</span>
+          </div>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Análise técnica on-page e off-page</p>
+            </div>
+          </div>
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Relatórios exportáveis em PDF</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Em progresso</span>
+              <p>Monitoramento contínuo de rankings</p>
+            </div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Próximo</span>
+              <p>Sugestões de conteúdo com IA generativa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERP -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <div class="app-card-icon erp"><i data-lucide="boxes"></i></div>
+          <div>
+            <h3>ERP</h3>
+            <span class="roadmap-subtitle">Gestão Empresarial</span>
+          </div>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Módulo financeiro e operacional</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Em progresso</span>
+              <p>Integração com gateway de pagamentos</p>
+            </div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Próximo</span>
+              <p>IA preditiva para fluxo de caixa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jarvis -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <div class="app-card-icon jarvis"><i data-lucide="bot"></i></div>
+          <div>
+            <h3>Jarvis</h3>
+            <span class="roadmap-subtitle">Gestão Pessoal</span>
+          </div>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Estrutura base de gestão pessoal</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Em progresso</span>
+              <p>Assistente de produtividade com IA</p>
+            </div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Próximo</span>
+              <p>Integração com calendário e tarefas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MeiVende -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <div class="app-card-icon meivende"><i data-lucide="trending-up"></i></div>
+          <div>
+            <h3>MeiVende</h3>
+            <span class="roadmap-subtitle">Marketing com IA</span>
+          </div>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Operação de campanhas automatizadas</p>
+            </div>
+          </div>
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Analytics de performance de ads</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Em progresso</span>
+              <p>Geração de criativos com IA</p>
+            </div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Próximo</span>
+              <p>Otimização preditiva de budget</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Atlas -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <div class="app-card-icon atlas"><i data-lucide="globe"></i></div>
+          <div>
+            <h3>Atlas</h3>
+            <span class="roadmap-subtitle">Gestor de Projetos</span>
+          </div>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Kanban e gestão de tarefas</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Em progresso</span>
+              <p>Alocação inteligente de recursos</p>
+            </div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Próximo</span>
+              <p>Previsão de prazos com machine learning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dash -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <div class="app-card-icon dash"><i data-lucide="gauge"></i></div>
+          <div>
+            <h3>Dash</h3>
+            <span class="roadmap-subtitle">Dashboards para Clientes</span>
+          </div>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Concluído</span>
+              <p>Dashboards de tráfego em tempo real</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Em progresso</span>
+              <p>Relatórios white-label por cliente</p>
+            </div>
+          </div>
+          <div class="timeline-item upcoming">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-label">Próximo</span>
+              <p>Alertas inteligentes de anomalias</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/scripts/shared.js"></script>
+</body>
+</html>

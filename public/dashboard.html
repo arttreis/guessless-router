@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Performance — GuessLess IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/styles/shared.css">
+</head>
+<body>
+
+  <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:20px;height:20px"></i>
+  </button>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-header animate-in">
+      <div class="main-header-top">
+        <div class="breadcrumb">Dashboard <span>/ Performance das IAs</span></div>
+      </div>
+      <h1 class="page-title">Dashboard de Performance</h1>
+      <p class="page-subtitle">Análise individual de cada inteligência artificial do ecossistema GuessLess</p>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="section-label animate-in delay-1">Visão geral do ecossistema</div>
+    <div class="stats-bar animate-in delay-2">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">IAs Ativas</div>
+          <i data-lucide="cpu"></i>
+        </div>
+        <div class="stat-value">6</div>
+        <div class="stat-change up"><i data-lucide="trending-up"></i> Todas operacionais</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Uptime Médio</div>
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="stat-value">99.8%</div>
+        <div class="stat-change up"><i data-lucide="trending-up"></i> Estável</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:99%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Requisições Totais</div>
+          <i data-lucide="activity"></i>
+        </div>
+        <div class="stat-value">48.2k</div>
+        <div class="stat-change up"><i data-lucide="trending-up"></i> +22% esta semana</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:72%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Latência Média</div>
+          <i data-lucide="clock"></i>
+        </div>
+        <div class="stat-value">38ms</div>
+        <div class="stat-change neutral"><i data-lucide="minus"></i> Estável</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:12%"></div></div>
+      </div>
+    </div>
+
+    <!-- Per-AI Performance -->
+    <div class="section-label animate-in delay-3" style="margin-top:2.5rem">Performance por aplicação</div>
+    <div class="perf-grid animate-in delay-4">
+
+      <div class="perf-card">
+        <div class="perf-card-header">
+          <div class="app-card-icon seo"><i data-lucide="search-check"></i></div>
+          <div>
+            <h3>SEO Audit</h3>
+            <span class="perf-tag">Auditoria de SEO</span>
+          </div>
+          <div class="perf-status online"><span class="dot"></span> Online</div>
+        </div>
+        <div class="perf-metrics">
+          <div class="perf-metric">
+            <span class="perf-metric-label">Uptime</span>
+            <span class="perf-metric-value">99.9%</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Req/dia</span>
+            <span class="perf-metric-value">8.4k</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Latência</span>
+            <span class="perf-metric-value">32ms</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Erros</span>
+            <span class="perf-metric-value low">0.02%</span>
+          </div>
+        </div>
+        <div class="perf-bar-row">
+          <span class="perf-bar-label">Carga</span>
+          <div class="stat-bar" style="flex:1"><div class="stat-bar-fill" style="width:65%"></div></div>
+          <span class="perf-bar-pct">65%</span>
+        </div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-header">
+          <div class="app-card-icon erp"><i data-lucide="boxes"></i></div>
+          <div>
+            <h3>ERP</h3>
+            <span class="perf-tag">Gestão Empresarial</span>
+          </div>
+          <div class="perf-status online"><span class="dot"></span> Online</div>
+        </div>
+        <div class="perf-metrics">
+          <div class="perf-metric">
+            <span class="perf-metric-label">Uptime</span>
+            <span class="perf-metric-value">99.7%</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Req/dia</span>
+            <span class="perf-metric-value">12.1k</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Latência</span>
+            <span class="perf-metric-value">45ms</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Erros</span>
+            <span class="perf-metric-value low">0.05%</span>
+          </div>
+        </div>
+        <div class="perf-bar-row">
+          <span class="perf-bar-label">Carga</span>
+          <div class="stat-bar" style="flex:1"><div class="stat-bar-fill" style="width:78%"></div></div>
+          <span class="perf-bar-pct">78%</span>
+        </div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-header">
+          <div class="app-card-icon jarvis"><i data-lucide="bot"></i></div>
+          <div>
+            <h3>Jarvis</h3>
+            <span class="perf-tag">Gestão Pessoal</span>
+          </div>
+          <div class="perf-status online"><span class="dot"></span> Online</div>
+        </div>
+        <div class="perf-metrics">
+          <div class="perf-metric">
+            <span class="perf-metric-label">Uptime</span>
+            <span class="perf-metric-value">99.5%</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Req/dia</span>
+            <span class="perf-metric-value">3.8k</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Latência</span>
+            <span class="perf-metric-value">52ms</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Erros</span>
+            <span class="perf-metric-value low">0.08%</span>
+          </div>
+        </div>
+        <div class="perf-bar-row">
+          <span class="perf-bar-label">Carga</span>
+          <div class="stat-bar" style="flex:1"><div class="stat-bar-fill" style="width:35%"></div></div>
+          <span class="perf-bar-pct">35%</span>
+        </div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-header">
+          <div class="app-card-icon meivende"><i data-lucide="trending-up"></i></div>
+          <div>
+            <h3>MeiVende</h3>
+            <span class="perf-tag">Marketing com IA</span>
+          </div>
+          <div class="perf-status online"><span class="dot"></span> Online</div>
+        </div>
+        <div class="perf-metrics">
+          <div class="perf-metric">
+            <span class="perf-metric-label">Uptime</span>
+            <span class="perf-metric-value">99.9%</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Req/dia</span>
+            <span class="perf-metric-value">15.3k</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Latência</span>
+            <span class="perf-metric-value">28ms</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Erros</span>
+            <span class="perf-metric-value low">0.01%</span>
+          </div>
+        </div>
+        <div class="perf-bar-row">
+          <span class="perf-bar-label">Carga</span>
+          <div class="stat-bar" style="flex:1"><div class="stat-bar-fill" style="width:82%"></div></div>
+          <span class="perf-bar-pct">82%</span>
+        </div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-header">
+          <div class="app-card-icon atlas"><i data-lucide="globe"></i></div>
+          <div>
+            <h3>Atlas</h3>
+            <span class="perf-tag">Gestor de Projetos</span>
+          </div>
+          <div class="perf-status online"><span class="dot"></span> Online</div>
+        </div>
+        <div class="perf-metrics">
+          <div class="perf-metric">
+            <span class="perf-metric-label">Uptime</span>
+            <span class="perf-metric-value">99.8%</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Req/dia</span>
+            <span class="perf-metric-value">5.2k</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Latência</span>
+            <span class="perf-metric-value">41ms</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Erros</span>
+            <span class="perf-metric-value low">0.03%</span>
+          </div>
+        </div>
+        <div class="perf-bar-row">
+          <span class="perf-bar-label">Carga</span>
+          <div class="stat-bar" style="flex:1"><div class="stat-bar-fill" style="width:45%"></div></div>
+          <span class="perf-bar-pct">45%</span>
+        </div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-header">
+          <div class="app-card-icon dash"><i data-lucide="gauge"></i></div>
+          <div>
+            <h3>Dash</h3>
+            <span class="perf-tag">Dashboards para Clientes</span>
+          </div>
+          <div class="perf-status online"><span class="dot"></span> Online</div>
+        </div>
+        <div class="perf-metrics">
+          <div class="perf-metric">
+            <span class="perf-metric-label">Uptime</span>
+            <span class="perf-metric-value">100%</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Req/dia</span>
+            <span class="perf-metric-value">7.2k</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Latência</span>
+            <span class="perf-metric-value">35ms</span>
+          </div>
+          <div class="perf-metric">
+            <span class="perf-metric-label">Erros</span>
+            <span class="perf-metric-value low">0.00%</span>
+          </div>
+        </div>
+        <div class="perf-bar-row">
+          <span class="perf-bar-label">Carga</span>
+          <div class="stat-bar" style="flex:1"><div class="stat-bar-fill" style="width:58%"></div></div>
+          <span class="perf-bar-pct">58%</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/scripts/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrações — GuessLess IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/styles/shared.css">
+</head>
+<body>
+
+  <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:20px;height:20px"></i>
+  </button>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main">
+    <div class="main-header animate-in">
+      <div class="main-header-top">
+        <div class="breadcrumb">Configuração <span>/ Integrações</span></div>
+      </div>
+      <h1 class="page-title">Integrações</h1>
+      <p class="page-subtitle">Conecte ferramentas externas ao ecossistema GuessLess IA</p>
+    </div>
+
+    <div class="section-label animate-in delay-1">Conectadas</div>
+    <div class="settings-grid animate-in delay-2" style="margin-bottom:2.5rem">
+
+      <!-- N8N -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#ea580c,#fb923c)">
+            <i data-lucide="zap" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>N8N</h3>
+          </div>
+          <span class="integration-status connected">Conectado</span>
+        </div>
+        <p>Plataforma de automação de workflows. Conecta todas as aplicações do ecossistema.</p>
+      </div>
+
+      <!-- Vercel -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#171717,#404040)">
+            <i data-lucide="triangle" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>Vercel</h3>
+          </div>
+          <span class="integration-status connected">Conectado</span>
+        </div>
+        <p>Hospedagem e deploy de todas as aplicações do ecossistema GuessLess.</p>
+      </div>
+
+      <!-- GitHub -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#1f2937,#4b5563)">
+            <i data-lucide="github" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>GitHub</h3>
+          </div>
+          <span class="integration-status connected">Conectado</span>
+        </div>
+        <p>Repositórios de código e versionamento de todos os projetos.</p>
+      </div>
+
+      <!-- EasyPanel -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#059669,#10b981)">
+            <i data-lucide="server" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>EasyPanel</h3>
+          </div>
+          <span class="integration-status connected">Conectado</span>
+        </div>
+        <p>Infraestrutura e gerenciamento de containers para serviços self-hosted.</p>
+      </div>
+
+    </div>
+
+    <div class="section-label animate-in delay-3">Disponíveis</div>
+    <div class="settings-grid animate-in delay-4">
+
+      <!-- Slack -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#611f69,#e01e5a)">
+            <i data-lucide="hash" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>Slack</h3>
+          </div>
+          <span class="integration-status pending">Em breve</span>
+        </div>
+        <p>Notificações e alertas diretamente no canal da equipe.</p>
+      </div>
+
+      <!-- Google Analytics -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#ea580c,#f59e0b)">
+            <i data-lucide="bar-chart-2" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>Google Analytics</h3>
+          </div>
+          <span class="integration-status pending">Em breve</span>
+        </div>
+        <p>Importação de dados de tráfego e conversão para o Dash.</p>
+      </div>
+
+      <!-- Meta Ads -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#1877f2,#42b4e6)">
+            <i data-lucide="megaphone" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>Meta Ads</h3>
+          </div>
+          <span class="integration-status pending">Em breve</span>
+        </div>
+        <p>Sincronização de campanhas e métricas do Facebook e Instagram Ads.</p>
+      </div>
+
+      <!-- Stripe -->
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <div class="int-icon" style="background:linear-gradient(135deg,#635bff,#a78bfa)">
+            <i data-lucide="credit-card" style="width:20px;height:20px"></i>
+          </div>
+          <div>
+            <h3>Stripe</h3>
+          </div>
+          <span class="integration-status disconnected">Não conectado</span>
+        </div>
+        <p>Gateway de pagamentos para integração com o módulo financeiro do ERP.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/scripts/shared.js"></script>
+</body>
+</html>

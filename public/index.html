@@ -8,318 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/styles/shared.css">
   <style>
-    :root {
-      --bg-root: #08080a;
-      --bg-sidebar: #0c0c10;
-      --bg-main: #0e0e13;
-      --bg-card: #141419;
-      --bg-card-hover: #1a1a22;
-      --border: #1e1e28;
-      --border-hover: #2e2e3a;
-      --text-primary: #f0f0f5;
-      --text-secondary: #8a8a9a;
-      --text-muted: #55556a;
-      --accent: #8b5cf6;
-      --accent-dim: #7c3aed;
-      --accent-glow: rgba(139, 92, 246, 0.15);
-      --accent-glow-strong: rgba(139, 92, 246, 0.25);
-      --green: #4ade80;
-      --sidebar-width: 260px;
-      --radius: 14px;
-      --radius-sm: 10px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg-root);
-      color: var(--text-primary);
-      min-height: 100vh;
-      display: flex;
-      overflow-x: hidden;
-    }
-
-    /* Lucide icon defaults */
-    .lucide { stroke-width: 1.75; }
-
-    /* ═══════════════ SIDEBAR ═══════════════ */
-    .sidebar {
-      width: var(--sidebar-width);
-      min-height: 100vh;
-      background: var(--bg-sidebar);
-      border-right: 1px solid var(--border);
-      padding: 1.5rem 1rem;
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      z-index: 100;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .sidebar-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.25rem 0.5rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: #fff;
-    }
-
-    .brand-text {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 1.15rem;
-      color: var(--text-primary);
-      letter-spacing: -0.3px;
-    }
-
-    .brand-badge {
-      font-size: 0.6rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-glow);
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      margin-left: auto;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .sidebar-search {
-      position: relative;
-      margin-bottom: 1.5rem;
-      padding: 0 0.25rem;
-    }
-
-    .sidebar-search input {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.6rem 0.75rem 0.6rem 2.35rem;
-      color: var(--text-primary);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .sidebar-search input::placeholder { color: var(--text-muted); }
-    .sidebar-search input:focus {
-      border-color: var(--accent-dim);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-
-    .sidebar-search .search-icon-wrap {
-      position: absolute;
-      left: 0.85rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-      display: flex;
-    }
-
-    .sidebar-search .search-shortcut {
-      position: absolute;
-      right: 0.85rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      background: var(--bg-root);
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      pointer-events: none;
-    }
-
-    .sidebar-section { margin-bottom: 1.25rem; }
-
-    .sidebar-section-title {
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
-      padding: 0 0.75rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .sidebar-nav { list-style: none; }
-
-    .sidebar-nav li a {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.55rem 0.75rem;
-      border-radius: var(--radius-sm);
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 400;
-      transition: all 0.15s ease;
-    }
-
-    .sidebar-nav li a:hover {
-      background: var(--accent-glow);
-      color: var(--text-primary);
-    }
-
-    .sidebar-nav li a.active {
-      background: var(--accent-glow-strong);
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .sidebar-nav li a .nav-icon {
-      width: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      opacity: 0.7;
-    }
-
-    .sidebar-nav li a.active .nav-icon { opacity: 1; }
-
-    .sidebar-footer {
-      margin-top: auto;
-      padding: 1rem 0.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .sidebar-user {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 0.5rem;
-      border-radius: var(--radius-sm);
-      cursor: default;
-    }
-
-    .user-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #6366f1, var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: #fff;
-    }
-
-    .user-info { flex: 1; min-width: 0; }
-    .user-name {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .user-role {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    /* ═══════════════ MAIN CONTENT ═══════════════ */
-    .main {
-      margin-left: var(--sidebar-width);
-      flex: 1;
-      padding: 2rem 2.5rem;
-      min-height: 100vh;
-      background: var(--bg-main);
-    }
-
-    .main-header { margin-bottom: 2.25rem; }
-
-    .main-header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.35rem;
-    }
-
-    .breadcrumb {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.3px;
-    }
-
-    .breadcrumb span { color: var(--text-secondary); }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .header-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      padding: 0.45rem 0.85rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.78rem;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .header-btn:hover {
-      border-color: var(--border-hover);
-      color: var(--text-primary);
-      background: var(--bg-card-hover);
-    }
-
-    .header-btn .lucide { width: 14px; height: 14px; }
-
-    .page-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.85rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      letter-spacing: -0.5px;
-    }
-
-    .page-subtitle {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      margin-top: 0.25rem;
-      font-weight: 300;
-    }
-
-    /* ═══════════════ APP GRID ═══════════════ */
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
-      margin-bottom: 0.85rem;
-    }
-
+    /* ═══════════════ HUB-SPECIFIC STYLES ═══════════════ */
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -363,26 +54,6 @@
 
     .app-card:hover::before { opacity: 1; }
 
-    .app-card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: #fff;
-    }
-
-    .app-card-icon .lucide { width: 20px; height: 20px; }
-
-    .app-card-icon.seo { background: linear-gradient(135deg, #059669, #10b981); }
-    .app-card-icon.erp { background: linear-gradient(135deg, var(--accent-dim), #a78bfa); }
-    .app-card-icon.jarvis { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-    .app-card-icon.meivende { background: linear-gradient(135deg, #d946ef, #f0abfc); }
-    .app-card-icon.atlas { background: linear-gradient(135deg, #ea580c, #fb923c); }
-    .app-card-icon.dash { background: linear-gradient(135deg, #0891b2, #22d3ee); }
-
     .app-card-content h2 {
       font-family: 'Outfit', sans-serif;
       font-size: 1rem;
@@ -416,16 +87,8 @@
     }
 
     .app-status .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
       background: var(--green);
       animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
-      50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(74, 222, 128, 0); }
     }
 
     .app-connect {
@@ -450,7 +113,7 @@
     /* ═══════════════ SHORTCUTS ═══════════════ */
     .shortcuts-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 0.75rem;
       margin-bottom: 2.5rem;
     }
@@ -487,140 +150,20 @@
 
     .shortcut-item:hover .shortcut-icon { opacity: 1; }
 
-    /* ═══════════════ STATS BAR ═══════════════ */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-    }
-
-    .stat-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      font-weight: 500;
-    }
-
-    .stat-header .lucide {
-      width: 16px;
-      height: 16px;
-      color: var(--text-muted);
-      opacity: 0.5;
-    }
-
-    .stat-value {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.65rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      color: var(--text-primary);
-    }
-
-    .stat-change {
-      font-size: 0.72rem;
-      font-weight: 500;
-      margin-top: 0.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .stat-change .lucide { width: 12px; height: 12px; }
-
-    .stat-change.up { color: var(--green); }
-    .stat-change.neutral { color: var(--text-muted); }
-
-    .stat-bar {
-      height: 3px;
-      background: var(--border);
-      border-radius: 2px;
-      margin-top: 0.75rem;
-      overflow: hidden;
-    }
-
-    .stat-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--accent-dim), var(--accent));
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* ═══════════════ MOBILE ═══════════════ */
-    .mobile-toggle {
-      display: none;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 200;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sidebar-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 90;
-    }
-
     @media (max-width: 1024px) {
       .apps-grid { grid-template-columns: repeat(2, 1fr); }
       .shortcuts-grid { grid-template-columns: repeat(3, 1fr); }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
-      .mobile-toggle { display: flex; }
-      .sidebar { transform: translateX(-100%); }
-      .sidebar.open { transform: translateX(0); }
-      .sidebar-overlay.open { display: block; }
-      .main { margin-left: 0; padding: 1.25rem; padding-top: 4rem; }
       .apps-grid { grid-template-columns: 1fr; }
       .shortcuts-grid { grid-template-columns: repeat(3, 1fr); }
-      .stats-bar { grid-template-columns: 1fr; }
     }
 
-    /* ═══════════════ ANIMATIONS ═══════════════ */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media (max-width: 480px) {
+      .shortcuts-grid { grid-template-columns: repeat(2, 1fr); }
+      .app-card { padding: 1rem; }
     }
-
-    .animate-in {
-      animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
-    }
-
-    .delay-1 { animation-delay: 0.05s; }
-    .delay-2 { animation-delay: 0.1s; }
-    .delay-3 { animation-delay: 0.15s; }
-    .delay-4 { animation-delay: 0.2s; }
-    .delay-5 { animation-delay: 0.25s; }
-    .delay-6 { animation-delay: 0.3s; }
-    .delay-7 { animation-delay: 0.35s; }
-    .delay-8 { animation-delay: 0.4s; }
   </style>
 </head>
 <body>
@@ -631,91 +174,8 @@
   </button>
   <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
-  <!-- ═══════════ SIDEBAR ═══════════ -->
-  <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="brand-icon">
-        <i data-lucide="brain" style="width:20px;height:20px"></i>
-      </div>
-      <span class="brand-text">GuessLess</span>
-      <span class="brand-badge">IA</span>
-    </div>
-
-    <div class="sidebar-search">
-      <span class="search-icon-wrap">
-        <i data-lucide="search" style="width:15px;height:15px"></i>
-      </span>
-      <input type="text" placeholder="Buscar aplicações..." id="searchInput" oninput="filterApps(this.value)">
-      <span class="search-shortcut">⌘F</span>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-section-title">Plataforma</div>
-      <ul class="sidebar-nav">
-        <li><a href="#" class="active">
-          <span class="nav-icon"><i data-lucide="layout-grid"></i></span> Hub
-        </a></li>
-        <li><a href="/dash">
-          <span class="nav-icon"><i data-lucide="bar-chart-3"></i></span> Dashboard
-        </a></li>
-        <li><a href="#">
-          <span class="nav-icon"><i data-lucide="zap"></i></span> Automações
-        </a></li>
-        <li><a href="#">
-          <span class="nav-icon"><i data-lucide="file-text"></i></span> Relatórios
-        </a></li>
-      </ul>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-section-title">Aplicações</div>
-      <ul class="sidebar-nav">
-        <li><a href="/seo">
-          <span class="nav-icon"><i data-lucide="search-check"></i></span> SEO Audit
-        </a></li>
-        <li><a href="/erp">
-          <span class="nav-icon"><i data-lucide="boxes"></i></span> ERP
-        </a></li>
-        <li><a href="/jarvis">
-          <span class="nav-icon"><i data-lucide="bot"></i></span> Jarvis
-        </a></li>
-        <li><a href="/meivende">
-          <span class="nav-icon"><i data-lucide="trending-up"></i></span> MeiVende
-        </a></li>
-        <li><a href="/atlas">
-          <span class="nav-icon"><i data-lucide="globe"></i></span> Atlas
-        </a></li>
-        <li><a href="/dash">
-          <span class="nav-icon"><i data-lucide="gauge"></i></span> Dash
-        </a></li>
-      </ul>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-section-title">Configuração</div>
-      <ul class="sidebar-nav">
-        <li><a href="#">
-          <span class="nav-icon"><i data-lucide="settings"></i></span> Settings
-        </a></li>
-        <li><a href="#">
-          <span class="nav-icon"><i data-lucide="plug"></i></span> Integrações
-        </a></li>
-      </ul>
-    </div>
-
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="user-avatar">
-          <i data-lucide="user" style="width:16px;height:16px"></i>
-        </div>
-        <div class="user-info">
-          <div class="user-name">GuessLess</div>
-          <div class="user-role">Workspace Admin</div>
-        </div>
-        <i data-lucide="chevrons-up-down" style="width:14px;height:14px;color:var(--text-muted)"></i>
-      </div>
-    </div>
-  </aside>
+  <!-- ═══════════ SIDEBAR (injected by shared.js) ═══════════ -->
+  <aside class="sidebar" id="sidebar"></aside>
 
   <!-- ═══════════ MAIN ═══════════ -->
   <main class="main">
@@ -744,7 +204,7 @@
           <i data-lucide="search-check"></i>
         </div>
         <div class="app-card-content">
-          <h2>SEO Audit</h2>
+          <h2>Auditoria de SEO</h2>
           <p>Auditoria completa de SEO com inteligência artificial. Análise técnica, on-page e off-page.</p>
         </div>
         <div class="app-card-footer">
@@ -753,13 +213,13 @@
         </div>
       </a>
 
-      <a href="/erp" class="app-card animate-in delay-3" data-name="erp plataforma principal">
+      <a href="/erp" class="app-card animate-in delay-3" data-name="erp gestão empresarial">
         <div class="app-card-icon erp">
           <i data-lucide="boxes"></i>
         </div>
         <div class="app-card-content">
           <h2>ERP</h2>
-          <p>Plataforma principal de gestão. Controle financeiro, operações e processos integrados.</p>
+          <p>Plataforma de gestão empresarial. Controle financeiro, operações e processos integrados.</p>
         </div>
         <div class="app-card-footer">
           <div class="app-status"><span class="dot"></span> Online</div>
@@ -767,13 +227,13 @@
         </div>
       </a>
 
-      <a href="/jarvis" class="app-card animate-in delay-4" data-name="jarvis comunicação inteligente">
+      <a href="/jarvis/meu-dia" class="app-card animate-in delay-4" data-name="jarvis gestão pessoal">
         <div class="app-card-icon jarvis">
           <i data-lucide="bot"></i>
         </div>
         <div class="app-card-content">
           <h2>Jarvis</h2>
-          <p>Comunicação inteligente multicanal. Automação de mensagens e atendimento via IA.</p>
+          <p>Plataforma de gestão pessoal. Produtividade, organização e assistência via IA.</p>
         </div>
         <div class="app-card-footer">
           <div class="app-status"><span class="dot"></span> Online</div>
@@ -781,13 +241,13 @@
         </div>
       </a>
 
-      <a href="/meivende" class="app-card animate-in delay-5" data-name="meivende analytics dados">
+      <a href="/meivende" class="app-card animate-in delay-5" data-name="meivende marketing ia operação">
         <div class="app-card-icon meivende">
           <i data-lucide="trending-up"></i>
         </div>
         <div class="app-card-content">
           <h2>MeiVende</h2>
-          <p>Analytics avançado e dados de mercado. Insights de vendas e comportamento do consumidor.</p>
+          <p>Plataforma de operação de marketing com IA. Campanhas, criativos e otimização automatizados.</p>
         </div>
         <div class="app-card-footer">
           <div class="app-status"><span class="dot"></span> Online</div>
@@ -795,13 +255,13 @@
         </div>
       </a>
 
-      <a href="/atlas" class="app-card animate-in delay-6" data-name="atlas mapeamento web">
+      <a href="/atlas" class="app-card animate-in delay-6" data-name="atlas gestor projetos guessless">
         <div class="app-card-icon atlas">
           <i data-lucide="globe"></i>
         </div>
         <div class="app-card-content">
           <h2>Atlas</h2>
-          <p>Mapeamento web e discovery de oportunidades. Rastreamento de concorrência e tendências.</p>
+          <p>Gestor de projetos da GuessLess. Kanban, roadmaps e alocação inteligente de recursos.</p>
         </div>
         <div class="app-card-footer">
           <div class="app-status"><span class="dot"></span> Online</div>
@@ -809,13 +269,13 @@
         </div>
       </a>
 
-      <a href="/dash" class="app-card animate-in delay-7" data-name="dash dashboard tráfego">
+      <a href="/dash" class="app-card animate-in delay-7" data-name="dash dashboards clientes">
         <div class="app-card-icon dash">
           <i data-lucide="gauge"></i>
         </div>
         <div class="app-card-content">
           <h2>Dash</h2>
-          <p>Dashboard de tráfego em tempo real. Métricas de performance, conversão e ROI consolidados.</p>
+          <p>Plataforma de dashboards para clientes. Métricas de performance, tráfego e ROI em tempo real.</p>
         </div>
         <div class="app-card-footer">
           <div class="app-status"><span class="dot"></span> Online</div>
@@ -833,23 +293,27 @@
       </a>
       <a href="/erp" class="shortcut-item">
         <span class="shortcut-icon"><i data-lucide="wallet"></i></span>
-        Financeiro
+        Gestão Empresarial
       </a>
-      <a href="/jarvis" class="shortcut-item">
-        <span class="shortcut-icon"><i data-lucide="message-circle"></i></span>
-        Mensagens
+      <a href="/jarvis/meu-dia" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="bot"></i></span>
+        Gestão Pessoal
       </a>
       <a href="/meivende" class="shortcut-item">
         <span class="shortcut-icon"><i data-lucide="chart-spline"></i></span>
-        Analytics
+        Marketing IA
       </a>
       <a href="/atlas" class="shortcut-item">
         <span class="shortcut-icon"><i data-lucide="map-pin"></i></span>
-        Mapeamento
+        Projetos
       </a>
       <a href="/dash" class="shortcut-item">
         <span class="shortcut-icon"><i data-lucide="activity"></i></span>
-        Tráfego
+        Dashboards
+      </a>
+      <a href="https://n8n-n8n.yx8026.easypanel.host/" target="_blank" rel="noopener" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="zap"></i></span>
+        Automações
       </a>
     </div>
 
@@ -904,38 +368,6 @@
 
   </main>
 
-  <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-
-    // Resize sidebar nav icons
-    document.querySelectorAll('.nav-icon .lucide').forEach(el => {
-      el.style.width = '18px';
-      el.style.height = '18px';
-    });
-
-    function toggleSidebar() {
-      document.querySelector('.sidebar').classList.toggle('open');
-      document.querySelector('.sidebar-overlay').classList.toggle('open');
-    }
-
-    function filterApps(query) {
-      const cards = document.querySelectorAll('.app-card');
-      const q = query.toLowerCase().trim();
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name') || '';
-        const text = card.textContent.toLowerCase();
-        const match = !q || name.includes(q) || text.includes(q);
-        card.style.display = match ? '' : 'none';
-      });
-    }
-
-    document.addEventListener('keydown', e => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'f') {
-        e.preventDefault();
-        document.getElementById('searchInput').focus();
-      }
-    });
-  </script>
+  <script src="/scripts/shared.js"></script>
 </body>
 </html>

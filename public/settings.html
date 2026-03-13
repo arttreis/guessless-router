@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações — GuessLess IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/styles/shared.css">
+</head>
+<body>
+
+  <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:20px;height:20px"></i>
+  </button>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main">
+    <div class="main-header animate-in">
+      <div class="main-header-top">
+        <div class="breadcrumb">Configuração <span>/ Configurações</span></div>
+      </div>
+      <h1 class="page-title">Configurações</h1>
+      <p class="page-subtitle">Gerencie as configurações gerais do ecossistema GuessLess IA</p>
+    </div>
+
+    <div class="settings-grid animate-in delay-2">
+
+      <!-- Workspace -->
+      <div class="settings-card">
+        <div class="settings-card-header">
+          <div class="card-icon"><i data-lucide="building-2"></i></div>
+          <h3>Workspace</h3>
+        </div>
+        <p>Informações gerais do workspace e organização.</p>
+        <div class="settings-row">
+          <span class="settings-row-label">Nome</span>
+          <span class="settings-row-value">GuessLess</span>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Plano</span>
+          <span class="settings-row-value active">Pro</span>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Domínio</span>
+          <span class="settings-row-value">ia.guessless.com.br</span>
+        </div>
+      </div>
+
+      <!-- Notificações -->
+      <div class="settings-card">
+        <div class="settings-card-header">
+          <div class="card-icon"><i data-lucide="bell"></i></div>
+          <h3>Notificações</h3>
+        </div>
+        <p>Configure alertas e notificações do sistema.</p>
+        <div class="settings-row">
+          <span class="settings-row-label">Alertas de downtime</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Relatórios semanais</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Alertas de erro</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+      </div>
+
+      <!-- Segurança -->
+      <div class="settings-card">
+        <div class="settings-card-header">
+          <div class="card-icon"><i data-lucide="shield"></i></div>
+          <h3>Segurança</h3>
+        </div>
+        <p>Configurações de acesso e autenticação.</p>
+        <div class="settings-row">
+          <span class="settings-row-label">Autenticação 2FA</span>
+          <div class="toggle" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">SSO</span>
+          <span class="settings-row-value">Não configurado</span>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">API Keys ativas</span>
+          <span class="settings-row-value">3</span>
+        </div>
+      </div>
+
+      <!-- Aplicações -->
+      <div class="settings-card">
+        <div class="settings-card-header">
+          <div class="card-icon"><i data-lucide="app-window"></i></div>
+          <h3>Aplicações</h3>
+        </div>
+        <p>Gerencie o status das aplicações do ecossistema.</p>
+        <div class="settings-row">
+          <span class="settings-row-label">Auditoria de SEO</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">ERP</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Jarvis</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">MeiVende</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Atlas</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Dash</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/scripts/shared.js"></script>
+</body>
+</html>
