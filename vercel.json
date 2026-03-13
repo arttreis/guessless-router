@@ -9,6 +9,8 @@
     { "source": "/meivende", "destination": "https://axiom-guessless.vercel.app/" },
     { "source": "/meivende/:path*", "destination": "https://axiom-guessless.vercel.app/:path*" },
     { "source": "/atlas", "destination": "https://atlas-na-web.vercel.app/" },
-    { "source": "/atlas/:path*", "destination": "https://atlas-na-web.vercel.app/:path*" }
+    { "source": "/atlas/:path*", "destination": "https://atlas-na-web.vercel.app/:path*" },
+    { "source": "/dash", "destination": "https://trafic-eli.vercel.app/" },
+    { "source": "/dash/:path*", "destination": "https://trafic-eli.vercel.app/:path*" }
   ]
 }
