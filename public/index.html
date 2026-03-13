@@ -4,66 +4,938 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GuessLess IA Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
+    :root {
+      --bg-root: #08080a;
+      --bg-sidebar: #0c0c10;
+      --bg-main: #0e0e13;
+      --bg-card: #141419;
+      --bg-card-hover: #1a1a22;
+      --border: #1e1e28;
+      --border-hover: #2e2e3a;
+      --text-primary: #f0f0f5;
+      --text-secondary: #8a8a9a;
+      --text-muted: #55556a;
+      --accent: #8b5cf6;
+      --accent-dim: #7c3aed;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+      --accent-glow-strong: rgba(139, 92, 246, 0.25);
+      --green: #4ade80;
+      --sidebar-width: 260px;
+      --radius: 14px;
+      --radius-sm: 10px;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0a0a0a;
-      color: #e5e5e5;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-root);
+      color: var(--text-primary);
       min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    /* Lucide icon defaults */
+    .lucide { stroke-width: 1.75; }
+
+    /* ═══════════════ SIDEBAR ═══════════════ */
+    .sidebar {
+      width: var(--sidebar-width);
+      min-height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 100;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
     }
-    .container { max-width: 720px; padding: 2rem; text-align: center; }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #fff; }
-    p.subtitle { color: #888; margin-bottom: 2.5rem; }
-    .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .app-card {
-      background: #161616;
-      border: 1px solid #262626;
-      border-radius: 12px;
-      padding: 1.5rem;
+
+    .brand-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-badge {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-glow);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-left: auto;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-search {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding: 0 0.25rem;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 0.75rem 0.6rem 2.35rem;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .sidebar-search input::placeholder { color: var(--text-muted); }
+    .sidebar-search input:focus {
+      border-color: var(--accent-dim);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .sidebar-search .search-icon-wrap {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      display: flex;
+    }
+
+    .sidebar-search .search-shortcut {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      background: var(--bg-root);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+
+    .sidebar-section { margin-bottom: 1.25rem; }
+
+    .sidebar-section-title {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      padding: 0 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-nav { list-style: none; }
+
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
       text-decoration: none;
-      color: #e5e5e5;
-      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.85rem;
+      font-weight: 400;
+      transition: all 0.15s ease;
     }
-    .app-card:hover { border-color: #555; background: #1a1a1a; }
-    .app-card h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
-    .app-card p { font-size: 0.85rem; color: #888; }
-    @media (max-width: 500px) { .apps { grid-template-columns: 1fr; } }
+
+    .sidebar-nav li a:hover {
+      background: var(--accent-glow);
+      color: var(--text-primary);
+    }
+
+    .sidebar-nav li a.active {
+      background: var(--accent-glow-strong);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .sidebar-nav li a .nav-icon {
+      width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .sidebar-nav li a.active .nav-icon { opacity: 1; }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 1rem 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .sidebar-user {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.5rem;
+      border-radius: var(--radius-sm);
+      cursor: default;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #6366f1, var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+    }
+
+    .user-info { flex: 1; min-width: 0; }
+    .user-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-role {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════ MAIN CONTENT ═══════════════ */
+    .main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2rem 2.5rem;
+      min-height: 100vh;
+      background: var(--bg-main);
+    }
+
+    .main-header { margin-bottom: 2.25rem; }
+
+    .main-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .breadcrumb {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+    }
+
+    .breadcrumb span { color: var(--text-secondary); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .header-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      background: var(--bg-card-hover);
+    }
+
+    .header-btn .lucide { width: 14px; height: 14px; }
+
+    .page-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .page-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+      font-weight: 300;
+    }
+
+    /* ═══════════════ APP GRID ═══════════════ */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .app-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px var(--border-hover);
+    }
+
+    .app-card:hover::before { opacity: 1; }
+
+    .app-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+    }
+
+    .app-card-icon .lucide { width: 20px; height: 20px; }
+
+    .app-card-icon.seo { background: linear-gradient(135deg, #059669, #10b981); }
+    .app-card-icon.erp { background: linear-gradient(135deg, var(--accent-dim), #a78bfa); }
+    .app-card-icon.jarvis { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+    .app-card-icon.meivende { background: linear-gradient(135deg, #d946ef, #f0abfc); }
+    .app-card-icon.atlas { background: linear-gradient(135deg, #ea580c, #fb923c); }
+    .app-card-icon.dash { background: linear-gradient(135deg, #0891b2, #22d3ee); }
+
+    .app-card-content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.2rem;
+    }
+
+    .app-card-content p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      font-weight: 300;
+    }
+
+    .app-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .app-status {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      color: var(--green);
+    }
+
+    .app-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(74, 222, 128, 0); }
+    }
+
+    .app-connect {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-glow);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .app-connect .lucide { width: 12px; height: 12px; }
+
+    .app-card:hover .app-connect {
+      background: var(--accent-glow-strong);
+    }
+
+    /* ═══════════════ SHORTCUTS ═══════════════ */
+    .shortcuts-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .shortcut-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.1rem 0.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+      font-weight: 400;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .shortcut-item:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+
+    .shortcut-icon {
+      opacity: 0.6;
+      display: flex;
+    }
+
+    .shortcut-icon .lucide { width: 22px; height: 22px; }
+
+    .shortcut-item:hover .shortcut-icon { opacity: 1; }
+
+    /* ═══════════════ STATS BAR ═══════════════ */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+
+    .stat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 500;
+    }
+
+    .stat-header .lucide {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+    }
+
+    .stat-change {
+      font-size: 0.72rem;
+      font-weight: 500;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .stat-change .lucide { width: 12px; height: 12px; }
+
+    .stat-change.up { color: var(--green); }
+    .stat-change.neutral { color: var(--text-muted); }
+
+    .stat-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ═══════════════ MOBILE ═══════════════ */
+    .mobile-toggle {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 200;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 90;
+    }
+
+    @media (max-width: 1024px) {
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+      .shortcuts-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-toggle { display: flex; }
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .main { margin-left: 0; padding: 1.25rem; padding-top: 4rem; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .shortcuts-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-bar { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════ ANIMATIONS ═══════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .delay-1 { animation-delay: 0.05s; }
+    .delay-2 { animation-delay: 0.1s; }
+    .delay-3 { animation-delay: 0.15s; }
+    .delay-4 { animation-delay: 0.2s; }
+    .delay-5 { animation-delay: 0.25s; }
+    .delay-6 { animation-delay: 0.3s; }
+    .delay-7 { animation-delay: 0.35s; }
+    .delay-8 { animation-delay: 0.4s; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>GuessLess IA Hub</h1>
-    <p class="subtitle">Aplicações de inteligência artificial</p>
-    <div class="apps">
-      <a href="/seo" class="app-card">
-        <h2>SEO</h2>
-        <p>Auditoria de SEO com IA</p>
+
+  <!-- Mobile Toggle -->
+  <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:20px;height:20px"></i>
+  </button>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <i data-lucide="brain" style="width:20px;height:20px"></i>
+      </div>
+      <span class="brand-text">GuessLess</span>
+      <span class="brand-badge">IA</span>
+    </div>
+
+    <div class="sidebar-search">
+      <span class="search-icon-wrap">
+        <i data-lucide="search" style="width:15px;height:15px"></i>
+      </span>
+      <input type="text" placeholder="Buscar aplicações..." id="searchInput" oninput="filterApps(this.value)">
+      <span class="search-shortcut">⌘F</span>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Plataforma</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active">
+          <span class="nav-icon"><i data-lucide="layout-grid"></i></span> Hub
+        </a></li>
+        <li><a href="/dash">
+          <span class="nav-icon"><i data-lucide="bar-chart-3"></i></span> Dashboard
+        </a></li>
+        <li><a href="#">
+          <span class="nav-icon"><i data-lucide="zap"></i></span> Automações
+        </a></li>
+        <li><a href="#">
+          <span class="nav-icon"><i data-lucide="file-text"></i></span> Relatórios
+        </a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Aplicações</div>
+      <ul class="sidebar-nav">
+        <li><a href="/seo">
+          <span class="nav-icon"><i data-lucide="search-check"></i></span> SEO Audit
+        </a></li>
+        <li><a href="/erp">
+          <span class="nav-icon"><i data-lucide="boxes"></i></span> ERP
+        </a></li>
+        <li><a href="/jarvis">
+          <span class="nav-icon"><i data-lucide="bot"></i></span> Jarvis
+        </a></li>
+        <li><a href="/meivende">
+          <span class="nav-icon"><i data-lucide="trending-up"></i></span> MeiVende
+        </a></li>
+        <li><a href="/atlas">
+          <span class="nav-icon"><i data-lucide="globe"></i></span> Atlas
+        </a></li>
+        <li><a href="/dash">
+          <span class="nav-icon"><i data-lucide="gauge"></i></span> Dash
+        </a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Configuração</div>
+      <ul class="sidebar-nav">
+        <li><a href="#">
+          <span class="nav-icon"><i data-lucide="settings"></i></span> Settings
+        </a></li>
+        <li><a href="#">
+          <span class="nav-icon"><i data-lucide="plug"></i></span> Integrações
+        </a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">
+          <i data-lucide="user" style="width:16px;height:16px"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name">GuessLess</div>
+          <div class="user-role">Workspace Admin</div>
+        </div>
+        <i data-lucide="chevrons-up-down" style="width:14px;height:14px;color:var(--text-muted)"></i>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════ MAIN ═══════════ -->
+  <main class="main">
+
+    <div class="main-header animate-in">
+      <div class="main-header-top">
+        <div class="breadcrumb">Hub <span>/ Aplicações</span></div>
+        <div class="header-actions">
+          <button class="header-btn">
+            <i data-lucide="plus"></i> Novo
+          </button>
+          <button class="header-btn">
+            <i data-lucide="sliders-horizontal"></i> Filtrar
+          </button>
+        </div>
+      </div>
+      <h1 class="page-title">Hub de Aplicações</h1>
+      <p class="page-subtitle">Acesse todas as ferramentas de inteligência artificial do ecossistema GuessLess</p>
+    </div>
+
+    <!-- Apps Grid -->
+    <div class="section-label animate-in delay-1">Aplicações conectadas</div>
+    <div class="apps-grid" id="appsGrid">
+      <a href="/seo" class="app-card animate-in delay-2" data-name="seo audit auditoria">
+        <div class="app-card-icon seo">
+          <i data-lucide="search-check"></i>
+        </div>
+        <div class="app-card-content">
+          <h2>SEO Audit</h2>
+          <p>Auditoria completa de SEO com inteligência artificial. Análise técnica, on-page e off-page.</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="app-status"><span class="dot"></span> Online</div>
+          <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
+        </div>
       </a>
-      <a href="/erp" class="app-card">
-        <h2>ERP</h2>
-        <p>Plataforma principal</p>
+
+      <a href="/erp" class="app-card animate-in delay-3" data-name="erp plataforma principal">
+        <div class="app-card-icon erp">
+          <i data-lucide="boxes"></i>
+        </div>
+        <div class="app-card-content">
+          <h2>ERP</h2>
+          <p>Plataforma principal de gestão. Controle financeiro, operações e processos integrados.</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="app-status"><span class="dot"></span> Online</div>
+          <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
+        </div>
       </a>
-      <a href="/jarvis" class="app-card">
-        <h2>Jarvis</h2>
-        <p>Comunicação inteligente</p>
+
+      <a href="/jarvis" class="app-card animate-in delay-4" data-name="jarvis comunicação inteligente">
+        <div class="app-card-icon jarvis">
+          <i data-lucide="bot"></i>
+        </div>
+        <div class="app-card-content">
+          <h2>Jarvis</h2>
+          <p>Comunicação inteligente multicanal. Automação de mensagens e atendimento via IA.</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="app-status"><span class="dot"></span> Online</div>
+          <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
+        </div>
       </a>
-      <a href="/meivende" class="app-card">
-        <h2>MeiVende</h2>
-        <p>Analytics e dados</p>
+
+      <a href="/meivende" class="app-card animate-in delay-5" data-name="meivende analytics dados">
+        <div class="app-card-icon meivende">
+          <i data-lucide="trending-up"></i>
+        </div>
+        <div class="app-card-content">
+          <h2>MeiVende</h2>
+          <p>Analytics avançado e dados de mercado. Insights de vendas e comportamento do consumidor.</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="app-status"><span class="dot"></span> Online</div>
+          <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
+        </div>
       </a>
-      <a href="/atlas" class="app-card">
-        <h2>Atlas</h2>
-        <p>Mapeamento web</p>
+
+      <a href="/atlas" class="app-card animate-in delay-6" data-name="atlas mapeamento web">
+        <div class="app-card-icon atlas">
+          <i data-lucide="globe"></i>
+        </div>
+        <div class="app-card-content">
+          <h2>Atlas</h2>
+          <p>Mapeamento web e discovery de oportunidades. Rastreamento de concorrência e tendências.</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="app-status"><span class="dot"></span> Online</div>
+          <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
+        </div>
       </a>
-      <a href="/dash" class="app-card">
-        <h2>Dash</h2>
-        <p>Dashboard de tráfego</p>
+
+      <a href="/dash" class="app-card animate-in delay-7" data-name="dash dashboard tráfego">
+        <div class="app-card-icon dash">
+          <i data-lucide="gauge"></i>
+        </div>
+        <div class="app-card-content">
+          <h2>Dash</h2>
+          <p>Dashboard de tráfego em tempo real. Métricas de performance, conversão e ROI consolidados.</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="app-status"><span class="dot"></span> Online</div>
+          <span class="app-connect">Conectar <i data-lucide="arrow-right"></i></span>
+        </div>
       </a>
     </div>
-  </div>
+
+    <!-- Shortcuts -->
+    <div class="section-label animate-in delay-6">Atalhos rápidos</div>
+    <div class="shortcuts-grid animate-in delay-7">
+      <a href="/seo" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="scan-search"></i></span>
+        Auditoria SEO
+      </a>
+      <a href="/erp" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="wallet"></i></span>
+        Financeiro
+      </a>
+      <a href="/jarvis" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="message-circle"></i></span>
+        Mensagens
+      </a>
+      <a href="/meivende" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="chart-spline"></i></span>
+        Analytics
+      </a>
+      <a href="/atlas" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="map-pin"></i></span>
+        Mapeamento
+      </a>
+      <a href="/dash" class="shortcut-item">
+        <span class="shortcut-icon"><i data-lucide="activity"></i></span>
+        Tráfego
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="section-label animate-in delay-7">Visão geral</div>
+    <div class="stats-bar animate-in delay-8">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Apps Ativas</div>
+          <i data-lucide="server"></i>
+        </div>
+        <div class="stat-value">6</div>
+        <div class="stat-change up">
+          <i data-lucide="trending-up"></i> Todas operacionais
+        </div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width: 100%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Uptime</div>
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="stat-value">99.9%</div>
+        <div class="stat-change up">
+          <i data-lucide="trending-up"></i> 0.2% vs mês anterior
+        </div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width: 99%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Requisições / dia</div>
+          <i data-lucide="arrow-up-down"></i>
+        </div>
+        <div class="stat-value">12.4k</div>
+        <div class="stat-change up">
+          <i data-lucide="trending-up"></i> 18% esta semana
+        </div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width: 72%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Latência média</div>
+          <i data-lucide="clock"></i>
+        </div>
+        <div class="stat-value">42ms</div>
+        <div class="stat-change neutral">
+          <i data-lucide="minus"></i> Estável
+        </div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width: 15%"></div></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Resize sidebar nav icons
+    document.querySelectorAll('.nav-icon .lucide').forEach(el => {
+      el.style.width = '18px';
+      el.style.height = '18px';
+    });
+
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('open');
+      document.querySelector('.sidebar-overlay').classList.toggle('open');
+    }
+
+    function filterApps(query) {
+      const cards = document.querySelectorAll('.app-card');
+      const q = query.toLowerCase().trim();
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name') || '';
+        const text = card.textContent.toLowerCase();
+        const match = !q || name.includes(q) || text.includes(q);
+        card.style.display = match ? '' : 'none';
+      });
+    }
+
+    document.addEventListener('keydown', e => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'f') {
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+      }
+    });
+  </script>
 </body>
 </html>
