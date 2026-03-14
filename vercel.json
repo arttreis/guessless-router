@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/seo", "destination": "/seo/", "permanent": false }
+    { "source": "/seo", "destination": "/seo/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/seo/", "destination": "https://audit-seo-azure.vercel.app/" },
